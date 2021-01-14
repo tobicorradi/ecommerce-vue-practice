@@ -15,6 +15,7 @@
           </ul>
         </div>
         <div class="product__details">
+          <span class="product__price">${{ price }}</span>
           <div class="colors">
             <div
               class="variant__circle"
@@ -71,12 +72,14 @@ export default {
         {
           id: 2324,
           color: "green",
+          price: 49.99,
           image: require("../assets/images/socks_green.jpg"),
           quantity: 50,
         },
         {
           id: 6234,
           color: "blue",
+          price: 80.45,
           image: require("../assets/images/socks_blue.jpg"),
           quantity: 0,
         },
@@ -104,6 +107,9 @@ export default {
     },
     inStock() {
       return this.variants[this.selectedVariant].quantity;
+    },
+    price() {
+      return this.variants[this.selectedVariant].price;
     },
     shipping() {
       if (this.premium) {
@@ -153,5 +159,9 @@ export default {
 }
 .colors {
   display: flex;
+}
+.product__price {
+  font-size: 27px;
+  letter-spacing: 2px;
 }
 </style>
