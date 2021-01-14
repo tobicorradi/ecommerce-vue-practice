@@ -1,26 +1,68 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <main>
+    <header>
+      <h1>Vue Ecommerce</h1>
+      <span>Items on cart: {{ cart.length }}</span>
+    </header>
+    <product-display :premium="true" @add-to-cart="updateCart" />
+  </main>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import ProductDisplay from "./components/ProductDisplay";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    ProductDisplay,
+  },
+  data() {
+    return {
+      cart: [],
+      premium: true,
+    };
+  },
+  methods: {
+    updateCart(id) {
+      this.cart.push(id);
+    },
+  },
+};
 </script>
 
 <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 16px;
+}
+header > h1 {
+  font-size: 14px;
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+.product__gallery,
+.product__info {
+  width: 50%;
+}
+.product__container {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: 40px;
+  text-align: left;
+}
+.product__image {
+  max-width: 100%;
 }
 </style>
